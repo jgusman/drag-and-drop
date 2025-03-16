@@ -1,5 +1,5 @@
 # Multi-gesture drag-and-drop decoding in a 2D iBCI control task
-<img src="/res/LatchDecoder/Figure 4B - Toy example (T11), Session 2, Trial 9.png" width=100% height=100%>
+<img src="/res/TaskFigures.svg" width=100% height=100%>
 
 This repo contains code for reproduction of the results and figures presented in the paper ["Multi-gesture drag-and-drop decoding in a 2D iBCI control task"](https://iopscience.iop.org/article/10.1088/1741-2552/adb180).
 

@@ -9,7 +9,7 @@ https://datadryad.org/dataset/doi:10.5061/dryad.98sf7m0v1
 Navigate over to `scripts/` to run `DragAndDropMaster.m`.
 
 # Requirements
-This code was written with MATLAB R2021b (v9.11) and relies on the following toolboxes: 
-System Indentification Toolbox (v.9.15)
-Statistics and Machine Learning Toolbox (v12.2)
-BioInformatics Toolbox (v4.15.2)
+This code was written with **MATLAB R2021b** (v9.11) and relies on the following toolboxes: 
+- System Indentification Toolbox (v.9.15)
+- Statistics and Machine Learning Toolbox (v12.2)
+- BioInformatics Toolbox (v4.15.2)

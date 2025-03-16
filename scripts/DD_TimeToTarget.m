@@ -67,7 +67,7 @@ n = 1;
 
 sPerf(n).trialType = 'Move Only';
 sPerf(n).stageName = 'Center Out';
-sPerf(n).stageStart = 'Prepare - Direction';
+sPerf(n).stageStart = 'Prepare - Direction'; % i.e. first stage of trial
 sPerf(n).epochOffsets = [1 2]; % (move, wait) From prepare epoch
 n = n + 1;
 
@@ -91,7 +91,7 @@ n = n + 1;
 
 sPerf(n).trialType = 'Drag';
 sPerf(n).stageName = 'Center Out';
-sPerf(n).stageStart = 'Prepare - Direction + Gesture'; %i.e. first stage of trial
+sPerf(n).stageStart = 'Prepare - Direction + Gesture'; 
 sPerf(n).epochOffsets = [1 2];
 n = n + 1;
 
@@ -110,14 +110,14 @@ isExcludedTrial = isExcludedCalTrial | isExcludedOutliersTrial;
 blockNum = taskInfo.blockNumber;
 
 for mtI = 1:length(sPerf)
-    isSelEpochsPreExlude = (ismember(taskInfo.trialStage,sPerf(mtI).stageStart));
-    isSelEpochs = isSelEpochsPreExlude & ~isExcludedTrial;
+    isSelEpochsPreExclude = (ismember(taskInfo.trialStage,sPerf(mtI).stageStart));
+    isSelEpochs = isSelEpochsPreExclude & ~isExcludedTrial;
     
     selEpochs = find(isSelEpochs);
     epochStartStops = selEpochs + sPerf(mtI).epochOffsets;
 
     sPerf(mtI).epochStartStops = epochStartStops;
-    sPerf(mtI).isSelEpochsPreExlude = isSelEpochsPreExlude;
+    sPerf(mtI).isSelEpochsPreExlude = isSelEpochsPreExclude;
     sPerf(mtI).blockNumber = taskInfo.blockNumber(isSelEpochs);
 end
 

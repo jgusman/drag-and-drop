@@ -335,14 +335,17 @@ function [trainInfo, holdout] = GetTrainInfoFromTaskInfo(taskInfo, opt)
     
     % Do not include drag trials or wait trials
     noActionTrialLogical = ~taskInfo.isDragAttempt & ~taskInfo.isWait & ~excludeTrials;
-    actionTrialLogical = ((taskInfo.isGestureOnset & ~taskInfo.isClickAttempt) | taskInfo.isDragAttempt) & ~excludeTrials;
+%     isCenterOutBeforeDrag = (taskInfo.isGestureOnset & ~taskInfo.isClickAttempt);
+    isCenterOut = strcmp(taskInfo.trialStage,'Center Out'); % 'Move' stage was changed to 'Center Out' in trialStage to be consistent with manuscript
+    isCenterOutBeforeDrag = isCenterOut & taskInfo.trialAttemptType=='Drag';
+    actionTrialLogical = (isCenterOutBeforeDrag | taskInfo.isDragAttempt) & ~excludeTrials;
     
     gestureStartStops = taskInfo.startStops;
     noActionStartStops = taskInfo.startStops; 
     
     % Exclude the on-target during center out. As that is when gesture
     % click/drags start.
-    centerOutTrials = find(taskInfo.isCenterOut);
+    centerOutTrials = find(isCenterOut);
     for ii = 1:length(centerOutTrials)
         coTrl = centerOutTrials(ii);
         if ~isempty(taskInfo.onTargetStartStops{coTrl})
@@ -483,7 +486,8 @@ end
 %%
 
 function [nOnTargPerTrial_CO,nOnTargPerTrial_WT] = GetTargetOnsetPerTrial(taskInfo)
-    nOnTargs_CO = cellfun(@(x) size(x,1), taskInfo.onTargetStartStops(taskInfo.isCenterOut));
+    isCenterOut = strcmp(taskInfo.trialStage,'Center Out'); % 'Move' stage was changed to 'Center Out' in trialStage to be consistent with manuscript
+    nOnTargs_CO = cellfun(@(x) size(x,1), taskInfo.onTargetStartStops(isCenterOut));
     nOnTargs_WT = cellfun(@(x) size(x,1), taskInfo.onTargetStartStops(taskInfo.isWait));
     
     nOnTargPerTrial_CO = nan(size(taskInfo.onTargetStartStops));

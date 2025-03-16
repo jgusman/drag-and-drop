@@ -135,27 +135,24 @@ classdef ddHelper
         function PrintNumberOfTrialTypesPerBlock(taskInfo)
             %%
             uBlks = unique(taskInfo.blockNumber);
-            uTrialStages = categories(taskInfo.trialAttemptType);
-            uTrialStages(end) = [];
+            uTrialTypes = categories(taskInfo.trialAttemptType);
+            uTrialTypes(end) = [];
             nPad = 5;
-            uTrialStageStr = pad(uTrialStages,nPad,'both');
-%             uTrialStages = unique(taskInfo.trialStage(contains(taskInfo.trialStage,'Prepare')));
+            uTrialTypeStr = pad(uTrialTypes,nPad,'both');
+
             ii = 1;
             blockStr = sprintf('%02d) Block %02d ', ii,uBlks(ii));
-            fprintf('%s %s %s %s\n', pad('Block #',length(blockStr),'both'), uTrialStageStr{:})
+            fprintf('%s %s %s %s\n', pad('Block #',length(blockStr),'both'), uTrialTypeStr{:})
             for ii = 1:length(uBlks)
-                %             fprintf('\n%02d) Block %02d\n',ii,uBlks(ii))
                 selI = ismember(taskInfo.blockNumber, uBlks(ii));
                 selI = selI & contains(taskInfo.trialStage,'Prepare');
                 nTrialsStr = {};
-                for jj = 1:length(uTrialStages)
-                    selJ = selI & ismember(taskInfo.trialAttemptType,uTrialStages(jj));
-%                     nTrialsPerType(ii,jj) = sum(selJ);
+                for jj = 1:length(uTrialTypes)
+                    selJ = selI & ismember(taskInfo.trialAttemptType,uTrialTypes(jj));
                     nTrialsStr{jj} = pad(num2str( sum(selJ) ),nPad,'both');
                 end
                 blockStr = sprintf('%02d) Block %02d ', ii,uBlks(ii));
                 fprintf('%s %s %s %s\n', blockStr, nTrialsStr{:});
-%                 nTrialsPerType(ii,:) = cu(taskInfo.trialStage(selI));
             end
         end
         

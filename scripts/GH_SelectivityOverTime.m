@@ -10,7 +10,7 @@
 
 % set figure save subfolder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'SelectivityOverTime'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'GH_SelectivityOverTime_out'))
 
 %% Set Common Vars
 
@@ -30,7 +30,7 @@ gestures = unique(sesData_GH_T11(1).taskInfo.labels);
 gestSel_T11_7g{ii} = CalcSelectiveOverTime(sesData_GH_T11(ii),winOnsetOffset,testWin,stepSize,false,false,gestures);   % gesture selectivity
 attemptSel_T11_7g{ii} = CalcSelectiveOverTime(sesData_GH_T11(ii),winOnsetOffset,testWin,stepSize,true,true,gestures);  % attempt selectivity
 
-% T11 Selectivity Over Time - just 3 gestures
+T11 Selectivity Over Time - just 3 gestures
 gestures =  {'Right index finger - down', 'Right hand - ok', 'Right hand - power grasp'};
 gestSel_T11_3g{ii} = CalcSelectiveOverTime(sesData_GH_T11(ii),winOnsetOffset,testWin,stepSize,false,false,gestures);    % gesture selectivity
 attemptSel_T11_3g{ii} = CalcSelectiveOverTime(sesData_GH_T11(ii),winOnsetOffset,testWin,stepSize,true,true,gestures);   % attempt selectivity
@@ -48,46 +48,53 @@ end
 
 %% Plot Main Paper Figures
 
-% Figure 2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 1s 2s 4s - just TX and SP feats
+% Figure 2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 1s 2s 4s - TX and SP feats
 PlotKW_selFeats(gestSel_T11_7g,sigAlpha,[],figWH,1:384);
 set(gcf, 'Name', 'Figure 2(A)', 'NumberTitle', 'off');
-ddFigHelper.SaveFigure('Figure 2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 1s 2s 4s - just TX and SP feats')
+ddFigHelper.SaveFigure('Figure 2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 1s 2s 4s - TX and SP feats')
 
-% Figure 3(A) - T11 Attempt Selectivity Over Time - 3 gestures - 1s 2s 4s - just TX and SP feats
+% Figure 3(A) - T11 Attempt Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats
 PlotKW_selFeats(attemptSel_T11_3g,sigAlpha,[],figWH,1:384);
 set(gcf, 'Name', 'Figure 3(A)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure 3(A) - T11 Attempt Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats')
 
 % Figure 3(B) - T5 Attempt Selectivity Over Time - 3 gestures - 1s 2s 4s - just TX and SP feats
 PlotKW_selFeats(attemptSel_T5_3g,sigAlpha,[],figWH,1:384);
 set(gcf, 'Name', 'Figure 3(B)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure 3(B) - T11 Attempt Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats')
 
 
 %% Plot Supplemental Figures 
 
-% Figure S2(A) - T11 Gestures Selectivity Over Time - 7 gestures - 4s only - by feature type
+% Figure S2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 4s only - by feature type
 PlotKW_ByFeatType_SamePlot(gestSel_T11_7g,sigAlpha,figWH)
 set(gcf, 'Name', 'Figure S2(A)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure S2(A) - T11 Gesture Selectivity Over Time - 7 gestures - 4s - By Feat Type')
 
-% Figure S3(A) - T11 Gesture Selectivity Over Time - 3 gestures - 1s 2s 4s - just TX and SP feats
+% Figure S3(A) - T11 Gesture Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats
 PlotKW_selFeats(gestSel_T11_3g,sigAlpha,[],figWH,1:384);
 set(gcf, 'Name', 'Figure S3(A)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure S3(A) - T11 Gesture Selectivity Over Time - 7\3 gestures - 1s 2s 4s - TX and SP feats')
 
-% Figure S4(A) - T5 Gesture Selectivity Over Time - 3 gestures - 1s 2s 4s - just TX and SP feats
+% Figure S4(A) - T5 Gesture Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats
 PlotKW_selFeats(gestSel_T5_3g,sigAlpha,[],figWH,1:384);
 set(gcf, 'Name', 'Figure S4(A)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure S4(A) - T5 Gesture Selectivity Over Time - 3 gestures - 1s 2s 4s - TX and SP feats')
 
 % Figure S5(A) - T11 Attempt Selectivity Over Time - 7 gestures - 4s only - by feature type
 PlotKW_ByFeatType_SamePlot(attemptSel_T11_7g,sigAlpha,figWH)
 set(gcf, 'Name', 'Figure S5(A)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure S5(A) - T11 Attempt Selectivity Over Time - 7 gestures - 4s only - by feat type')
 
 % Figure S5(B) - T11 Attempt Selectivity Over Time - 3 gestures - 4s only - by feature type
 PlotKW_ByFeatType_SamePlot(attemptSel_T11_3g,sigAlpha,figWH)
 set(gcf, 'Name', 'Figure S5(B)', 'NumberTitle', 'off');
+ddFigHelper.SaveFigure('Figure S5(B) - T11 Attempt Selectivity Over Time - 3 gestures - 4s only - by feat type')
 
 % Figure S5(C) - T5 Attempt Selectivity Over Time - 3 gestures - 4s only - by feature type
 PlotKW_ByFeatType_SamePlot(attemptSel_T5_3g,sigAlpha,figWH)
 set(gcf, 'Name', 'Figure S5(C)', 'NumberTitle', 'off');
-
+ddFigHelper.SaveFigure('Figure S5(C) - T5 Attempt Selectivity Over Time - 3 gestures - 4s only - by feat type')
 
 
 
@@ -158,7 +165,7 @@ if nargin < 7
 end
 
 
-outlierThreshold = 3;
+outlierThreshold = 3; % if percent of NS5 outliers in trial exceed this threshold, exclude from analysis
 
 taskInfo = sesData.taskInfo;
 durs = taskInfo.trialDurationRounded;

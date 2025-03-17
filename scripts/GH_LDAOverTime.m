@@ -10,7 +10,7 @@
 
 % set figure save subfolder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'LDAOverTime'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'GH_LDAOverTime_out'))
 
 %% Set Common Sweep Params
 sweepInfo.attemptWindow   = [-24 0]; % What goes into the lda for decoding. [-24 0] is 0.5 seconds back.
@@ -21,7 +21,7 @@ sweepInfo.featInds = 1:size(sesData_GH_T11(1).feat,2);%1:384;
 sweepInfo.enforceTransitionMatrix = 0; % 0 = No HMM. [] = Yes HMM. Transition matrix from train data trial transitions.
 
 
-allFeatNames = {'ncTX','spikePower','STFT'};
+allFeatNames = {'TX','SP','LFPs'};
 featTypeInds = {1:192,193:384,385:1344};
 
 
@@ -29,7 +29,7 @@ featTypeInds = {1:192,193:384,385:1344};
 %% FIGURE 2(B) and 2(C)
 % T11 - Calculate LDA Over Time Gesture and Attempt - TX and SP
 
-featNames = {'ncTX','spikePower'};
+featNames = {'TX','SP'};
 selFeat = [featTypeInds{ismember(allFeatNames,featNames)}];
 sweepPerSesT11 = ComparePerformanceOverTime_SelFeat(sesData_GH_T11,sweepInfo,selFeat);
 
@@ -81,7 +81,7 @@ ddFigHelper.SaveFigure(fh2,sprintf('Figure S3(C) - Sliding LDA - Attempt (T5), %
 
 gestures = {'Right index finger - down', 'Right hand - ok', 'Right hand - power grasp'};
 
-featNames = {'ncTX','spikePower'};
+featNames = {'TX','SP'};
 selFeat = [featTypeInds{ismember(allFeatNames,featNames)}];
 sweepPerSesT11_3g = ComparePerformanceOverTime_SelFeat(sesData_GH_T11,sweepInfo,selFeat,gestures);
 

@@ -157,10 +157,7 @@ for swpI = 1:nSweep
         statTestND = nanmean(statTestND,1);
         lbl = lbl(1,:);
     end
-    %%
-%     jitter = (rand(length(lbl),1) - 0.5)*0.4;
-%     ordLbl = double(lbl(:)) + jitter(:);
-    
+
     for ii = 1:nDim
         
         d = statTestND(:,:,ii);
@@ -170,83 +167,11 @@ for swpI = 1:nSweep
             b = [];
         end
         
-%         xi(ii) = xicorr.Corr(d,ordLbl, 20);
-%         entrop(swpI,ii) = entropy(d);
-%         mi(ii) = mutualinfo(d(:), ordLbl(:)); %double(lbl(:)));
+
         kwP(swpI,ii) = kruskalwallis( cat(1,d(:),b(:)), ...
                                       cat(1,lbl(:),baselineLabel(:)), 'off' );
     end
-%     N = 25;
-    
-%     [~,si] = sort(xi(:), 'descend');
-%     kwP = ones(size(kwP));
-%     kwP(si(1:N)) = linspace(0,0.0001, N);
-    %%
-% figure(123)
-% clf
-% pltVals = {xi, mi, entrop};
-% titleStrs = {'XI', 'MI', 'Entropy'};
-% for ii = 1:length(pltVals)
-%     subplot(length(pltVals),1,ii)
-% plotVal = pltVals{ii};
-% % plotVal = entrop;
-% plot(plotVal)
-% 
-% aa = find(kwP<0.01);
-% plot(aa,plotVal(aa),'rx')
-% title(titleStrs{ii})
-% end
-% %%
-% figure(123)
-% clf
-% plotVal = [];
-% for ii = 1:2 %length(pltVals)
-%     plotVal = cat(1, plotVal, pltVals{ii});
-% end
-% plotVal= sum(plotVal);
-%  zz plotVal
-% % plotVal = entrop;
-% plot(plotVal)
-% 
-% aa = find(kwP<0.01);
-% plot(aa,plotVal(aa),'rx')
-% 
-% %%
-% f = 331;
-% d = statTestND(:,:,f);
-% [sv,si] = sort(double(lbl));
-% figure(1234)
-% clf
-% scatter(1:length(d), d(si), 30, double(lbl(si)), 'filled');
-% for ii = 1:length(titleStrs)
-%     titleStr2{ii} = sprintf('%s: %.3f', titleStrs{ii}, pltVals{ii}(f));
-% end
-% titleStr2{length(titleStrs)+1} = sprintf('KW: %.3f', kwP(f));
-% title(titleStr2)
-% end
-% 
-% %%
-% figure(1231231)
-% clf
-% [~, bestFeatInds] = sort(xi, 'descend');
-% offset = 0;
-% ms = 20;
-% tsp = tight_subplot(5,5);
-% for jj = 1:25
-%     axes(tsp(jj))
-%     f = bestFeatInds(jj+offset);
-%     d = statTestND(:,:,f);
-%     
-%     scatter(1:length(d), d(si), ms, double(lbl(si)), 'filled');
-% for ii = 1:length(titleStrs)
-%     titleStr2{ii} = sprintf('%s: %.3f', titleStrs{ii}, pltVals{ii}(f));
-% end
-% titleStr2{length(titleStrs)+1} = sprintf('KW: %.3f', kwP(f));
-% % th = title(titleStr2);
-% % th.Units = 'normalized';
-% % th.Position(2) = 0.5;
-% % th.FontSize = 8;
-%     
+
 end
 end
 
@@ -385,8 +310,6 @@ for ii = 1:nPlot
         end
     end
     
-%     filepath = fullfile(exportDir, sprintf('%s.png', titleStr));
-%     export_fig(filepath, '-dpng', '-m2')
     
 end
 infStr = InfoString(sprintf('%d features p < %.1e', length(sigInds), kwOpt.plotTestAlpha));

@@ -12,7 +12,7 @@
 
 % set figure save folder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'DD_GestureVsLatch'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'DD_GestureVsLatch_out'))
 
 %% Get Drag and Drop Task Performance Metrics
 

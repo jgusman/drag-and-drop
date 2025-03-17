@@ -12,7 +12,7 @@
 
 % set figure save subfolder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'NeuralComponents'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'GH_NeuralComponents_out'))
 
 %% Define grid search resolution
 increment = 5;  % grid search resolution; number of 20ms timestamps to increment 

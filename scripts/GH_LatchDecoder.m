@@ -10,7 +10,7 @@
 % set figure save subfolder
 ddFigHelper.ResetParams()
 figParams = ddFigHelper.GetAppData();
-figParams.saveDir = fullfile(saveFiguresFolder,'LatchDecoder');
+figParams.saveDir = fullfile(saveFiguresFolder,'GH_LatchDecoder_out');
 figParams.fig.fontSize = 8;
 ddFigHelper.SetParams( figParams )
 

@@ -12,7 +12,7 @@
 
 % set figure save folder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'DD_TimeToTarget'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'DD_TimeToTarget_out'))
 
 %% Calculate Trial Durations
 sPerformance = GetPerformance(sesData_DD_T11);

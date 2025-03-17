@@ -8,11 +8,13 @@
 % -------------------------------------------------------------------------
 
 
-%% Set up matlab paths
-activeFilePath = matlab.desktop.editor.getActiveFilename; % gets absolute path to the current file
-scriptDir = fileparts(activeFilePath);                    % gets the folder of this repo
-addpath(genpath(fullfile(scriptDir)));                    % adds folder and subfolders to matlab path
-saveFiguresFolder = fullfile(scriptDir,'res');            % set folder in with saved generate figures (defaults to 'res' folder)
+%% Add paths and specify outputs and data directories
+activeFilePath = matlab.desktop.editor.getActiveFilename; % gets absolute path to the current file (DragAndDropMaster.m)
+scriptDir = fileparts(activeFilePath);                    % gets the scripts folder path
+repoDir = fileparts(scriptDir);                           % gets the repo path
+addpath(genpath(fullfile(repoDir)));                      % adds folder and subfolders to matlab path
+
+saveFiguresFolder = fullfile(repoDir,'outputs');          % set folder in with saved generate figures (defaults to 'outputs' folder)
 dataFolder = '';                                          % set folder where the data from Dryad was saved locally
 
 

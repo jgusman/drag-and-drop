@@ -12,7 +12,7 @@
 
 % set figure save subfolder
 ddFigHelper.ResetParams()
-ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'FeatureSelection'))
+ddFigHelper.SetSaveDir(fullfile(saveFiguresFolder,'GH_FeatureSelection_out'))
 
 %% Calculate Gesture and Attempt Selective Features and Top 400 Features Used in Latch Decoder (via MRMR)
 

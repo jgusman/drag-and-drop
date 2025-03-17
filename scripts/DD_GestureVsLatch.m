@@ -360,7 +360,8 @@ for sesI = 1:nSessions
 
     decodedState = outCL.decodedState;   % decoded state at every 20ms time step in session
     gestureProbs = outCL.stateLL;        % gesture probabilities at every 20ms time step in session (from gesture decoder)
-    gestureThresh = outCL.stateThresh;   % probability threshold at every 20ms time step in session (most likely same throughout)
+    gestureThresh = outCL.stateThresh;   % probability threshold (0.998)
+%     gestureThresh = 0.998;
 
     isOnTarget = outCL.isOnTarget;       % is cursor contacting cued target (checked every 20ms)
 
@@ -394,8 +395,9 @@ for sesI = 1:nSessions
         blkI = sesData(sesI).blocks==blk;
 
         [mv,mi] = max(gestureProbs(trlInds,:),[],2);                            % Find gesture state with highest likelihood at each timepoint of trial
-        mi(mv<gestureThresh(trlInds)) = 1;                                      % Only count decode if above threshold (if not, default to 1 (no action))
-        imagery = unique({taskInfo.actionMapPerBlock{blkI}.imagery},'stable');  % Get map numerical state to gesture name (categorical)
+        mi(mv<gestureThresh) = 1;                                      % Only count decode if above threshold (if not, default to 1 (no action))
+%         imagery = unique({taskInfo.actionMapPerBlock{blkI}.imagery},'stable');  % Get map numerical state to gesture name (categorical)
+        imagery = taskInfo.imagery;                                             % Get map numerical state to gesture name (categorical)
         gestOnlyDecode = categorical(mi,1:length(imagery),imagery);             % Change to categorical
 
         subfields = {'gestLatch', 'gestOnly'};
@@ -434,8 +436,9 @@ for sesI = 1:nSessions
             blkI = sesData(sesI).blocks==blk;
 
             [mv,mi] = max(gestureProbs(trlInds,:),[],2);                            % Find highest gesture likelihood
-            mi(mv<gestureThresh(trlInds)) = 1;                                      % Only count decode if above threshold (if not, default to 1 (no action)
-            imagery = unique({taskInfo.actionMapPerBlock{blkI}.imagery},'stable');
+            mi(mv<gestureThresh) = 1;                                      % Only count decode if above threshold (if not, default to 1 (no action)
+%             imagery = unique({taskInfo.actionMapPerBlock{blkI}.imagery},'stable');
+            imagery = taskInfo.imagery;   
             gestOnlyDecode = categorical(mi,1:length(imagery),imagery);             % Change to categorical
 
             subfields = {'gestLatch', 'gestOnly'};
